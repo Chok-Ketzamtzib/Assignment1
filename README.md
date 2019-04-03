@@ -12,7 +12,7 @@ Do not commit or perform merge requests with Master Branch until 5th week.
 
 ## License
 
-[Unlicense] (https://choosealicense.com/licenses/unlicense/)
+Kettering University
 
 
 
