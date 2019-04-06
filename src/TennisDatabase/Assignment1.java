@@ -11,34 +11,31 @@ public class Assignment1 {
 	public static void main(String[] args) {
 		
 		String data;
+		String fileName = "C:\\\\Users\\\\jcsan_000\\\\Desktop\\\\Java_Files\\\\CS102_A1_Turini_Giuseppe\\\\cs102__assignment_01__example_data_file.txt";
 		
-		Scanner scan = new Scanner (System.in); //not used atm
+		Scanner scan = new Scanner (System.in); 
 		
-		System.out.println("Press any key to print file output\n"); //might implement key-event later
+		System.out.println("CS-102 Tennis Manager - Available commands:\n");
 		
+		System.out.println("1 --> print all tennis players"); 
 		
-		BufferedReader in; // Reads text from a character-input stream from File 
-		try { 
-			
-			in = new BufferedReader(new FileReader(
-			"C:\\Users\\jcsan_000\\Desktop\\Java_Files"
-			+ "\\CS102_A1_Turini_Giuseppe\\cs102__assignment_01__example_data_file.txt"));
+		TennisDatabase data1 = new TennisDatabase();
 		
-			while((data = in.readLine()) != null) { //while each line in the file has text
-			    System.out.println(data);
+		int commandInput = scan.nextInt();
+		
+		if (commandInput == 1) {
+			try {
+				data1.loadFromFile(fileName);
+			} catch (TennisDatabaseRuntimeException | TennisDatabaseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			
-			in.close();
+		} else {
+			System.out.println("Done with program"); //temp solution
+		}
 		
-		} catch (FileNotFoundException e) {
-			
-			e.printStackTrace();
-			
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-			
-		} 
+		
+		
 	}
 
 }

@@ -1,11 +1,38 @@
 package TennisDatabase;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class TennisDatabase implements TennisDatabaseInterface {
+	
+	
 
 	@Override
 	public void loadFromFile(String fileName) throws TennisDatabaseException, TennisDatabaseRuntimeException {
-		// TODO Auto-generated method stub
-
+		
+		String fileData;
+		BufferedReader in; // Reads text from a character-input stream from File 
+		try { 
+			
+			in = new BufferedReader(new FileReader(fileName));
+		
+			while((fileData= in.readLine()) != null) { //while each line in the file has text
+			    System.out.println(fileData);
+			}
+			
+			in.close();
+		
+		} catch (FileNotFoundException e) {
+			
+			e.printStackTrace();
+			
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+			
+		} 
 	}
 
 	@Override
