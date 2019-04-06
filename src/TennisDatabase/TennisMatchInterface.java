@@ -10,24 +10,24 @@ import java.lang.String;
 // Interface (package-private) providing the specifications for the TennisMatch class.
 interface TennisMatchInterface extends Comparable<TennisMatch> {
 
-	// Accessors (getters).
-	public String getIdPlayer1();
+    // Accessors (getters).
+    public String getIdPlayer1();
 
-	public String getIdPlayer2();
+    public String getIdPlayer2();
 
-	public int getDateYear();
+    public int getDateYear();
 
-	public int getDateMonth();
+    public int getDateMonth();
 
-	public int getDateDay();
+    public int getDateDay();
 
-	public String getTournament();
+    public String getTournament();
 
-	public String getMatchScore();
+    public String getMatchScore();
 
-	public int getWinner();
+    public int getWinner();
 
-	// Desc.: Prints this match on the console.
-	public void print();
+    // Desc.: Prints this match on the console.
+    public void print();
 
 }
