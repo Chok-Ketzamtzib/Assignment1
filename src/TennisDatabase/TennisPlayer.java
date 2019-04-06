@@ -1,7 +1,8 @@
 package TennisDatabase;
 
-public class TennisPlayer implements TennisPlayerInterface
+class TennisPlayer implements TennisPlayerInterface
 {
+
     @Override
     public String getId()
     {

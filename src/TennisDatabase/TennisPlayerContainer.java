@@ -1,6 +1,6 @@
 package TennisDatabase;
 
-public class TennisPlayerContainer implements TennisPlayerContainerInterface
+class TennisPlayerContainer implements TennisPlayerContainerInterface
 {
     @Override
     public void insertPlayer(TennisPlayer p) throws TennisDatabaseException

@@ -1,6 +1,6 @@
 package TennisDatabase;
 
-public class TennisDatabase implements TennisDatabaseInterface
+class TennisDatabase implements TennisDatabaseInterface
 {
     @Override
     public void loadFromFile(String fileName) throws TennisDatabaseException, TennisDatabaseRuntimeException

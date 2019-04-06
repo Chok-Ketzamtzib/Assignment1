@@ -1,6 +1,6 @@
 package TennisDatabase;
 
-public class TennisMatchContainer implements TennisMatchContainerInterface
+class TennisMatchContainer implements TennisMatchContainerInterface
 {
     @Override
     public void insertMatch(TennisMatch m) throws TennisDatabaseException
