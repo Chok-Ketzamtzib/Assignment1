@@ -2,36 +2,50 @@ package TennisDatabase;
 
 class TennisPlayer implements TennisPlayerInterface
 {
+    private String id;
+    private String firstName;
+    private String lastName;
+    private int year;
+    private String country;
+    public TennisPlayer(String id, String firstName, String lastName, int year, String country)
+    {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.year = year;
+        this.country = country;
+    }
 
     @Override
     public String getId()
     {
-        return null;
+        return id;
     }
 
     @Override
     public String getFirstName()
     {
-        return null;
+        return firstName;
     }
 
     @Override
     public String getLastName()
     {
-        return null;
+        return lastName;
     }
 
     @Override
     public int getBirthYear()
     {
-        return 0;
+        return year;
     }
 
     @Override
     public String getCountry()
     {
-        return null;
+        return country;
     }
+
 
     @Override
     public void print()

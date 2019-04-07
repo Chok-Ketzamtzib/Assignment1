@@ -1,10 +1,13 @@
 package TennisDatabase;
 
+import java.io.File;
+
 class TennisDatabase implements TennisDatabaseInterface
 {
     @Override
     public void loadFromFile(String fileName) throws TennisDatabaseException, TennisDatabaseRuntimeException
     {
+        File inFile = new File(fileName);
 
     }
 

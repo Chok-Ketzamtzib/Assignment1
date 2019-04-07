@@ -2,46 +2,64 @@ package TennisDatabase;
 
 class TennisMatch implements TennisMatchInterface
 {
+    private String idPlayer1;
+    private String idPlayer2;
+    private int year;
+    private int month;
+    private int day;
+    private String tournament;
+    private String score;
+    public TennisMatch (String idPlayer1, String idPlayer2, int year, int month, int day, String tournament, String score)
+    {
+        this.idPlayer1 = idPlayer1;
+        this.idPlayer2 = idPlayer2;
+        this.year = year;
+        this.month = month;
+        this.day = day;
+        this.tournament = tournament;
+        this.score = score;
+    }
+
     @Override
     public String getIdPlayer1()
     {
-        return null;
+        return idPlayer1;
     }
 
     @Override
     public String getIdPlayer2()
     {
-        return null;
+        return idPlayer2;
     }
 
     @Override
     public int getDateYear()
     {
-        return 0;
+        return year;
     }
 
     @Override
     public int getDateMonth()
     {
-        return 0;
+        return month;
     }
 
     @Override
     public int getDateDay()
     {
-        return 0;
+        return day;
     }
 
     @Override
     public String getTournament()
     {
-        return null;
+        return tournament;
     }
 
     @Override
     public String getMatchScore()
     {
-        return null;
+        return score;
     }
 
     @Override
