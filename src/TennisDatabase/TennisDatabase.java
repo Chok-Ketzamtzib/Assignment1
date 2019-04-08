@@ -1,4 +1,4 @@
-package TennisDatabase;
+package tennisDatabase;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

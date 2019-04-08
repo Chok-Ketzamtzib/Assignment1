@@ -1,4 +1,4 @@
-package TennisDatabase;
+package tennisDatabase;
 
 public class TennisPlayer implements TennisPlayerInterface {
 
