@@ -23,12 +23,14 @@ class Assignment1
             case 1:
                 System.out.println("You selected \"Print all tennis players.\"");
                 database.getAllPlayers();
+                //TODO: print all players
                 break;
             case 2:
                 System.out.println("You selected \"Print all tennis matches of a player.\"");
                 System.out.println("Enter player id:");
                 String idInput = consoleIn.next();
                 database.getMatchesOfPlayer(idInput);
+                //TODO: print all matches
                 break;
             case 9:
                 System.out.println("Exiting...");
