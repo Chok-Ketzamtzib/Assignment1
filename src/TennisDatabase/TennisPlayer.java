@@ -1,6 +1,6 @@
 package TennisDatabase;
 
-class TennisPlayer implements TennisPlayerInterface
+public class TennisPlayer implements TennisPlayerInterface
 {
     private String id;
     private String firstName;

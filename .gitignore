@@ -2,3 +2,4 @@
 *.xml
 *.iml
 out/production/Assignment 1/META-INF/Assignment 1.kotlin_module
+*.class

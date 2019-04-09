@@ -1,13 +1,56 @@
 package TennisDatabase;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
-class TennisDatabase implements TennisDatabaseInterface
+public class TennisDatabase implements TennisDatabaseInterface
 {
     @Override
     public void loadFromFile(String fileName) throws TennisDatabaseException, TennisDatabaseRuntimeException
     {
-        File inFile = new File(fileName);
+
+        Scanner fileScan = null;
+        int playerCount = 1;
+        int matchCount = 1;
+
+        try
+        {
+            File inFile = new File(fileName);
+            fileScan = new Scanner(inFile).useDelimiter("[\\r\\n]+");
+        }
+        catch (FileNotFoundException e)
+        {
+            throw new TennisDatabaseException("ERROR: Input file not found.");
+        }
+
+        //CONCEPT CODE FROM PROF
+
+        while (fileScan.hasNextLine())
+        {
+            String inString = fileScan.nextLine();
+            Scanner inScan = new Scanner(inString).useDelimiter("[\\r\\n/]");
+            String token = inScan.next().toUpperCase();
+
+            if (token.equals("PLAYER"))
+            {
+                /*
+                try
+                {
+                    String id = inScan.next().toUpperCase();
+                    String firstName = inScan.next().toUpperCase();
+                    String lastName = inScan.next().toUpperCase();
+                    int year = inScan.nextInt();
+                    String country = inScan.next().toUpperCase();
+                    TennisPlayer p = new TennisPlayer(id,firstName,lastName,year,country);
+                    //tennisplayercountainer.insertplayer(p)
+                    playerCount++;
+
+                }
+
+                 */
+            }
+        }
 
     }
 

@@ -6,7 +6,7 @@
 package TennisDatabase;
 
 // Custom (checked) exception for the TennisDatabase package, representing critical runtime errors (that must be handled).
-class TennisDatabaseException extends java.lang.Exception {
+public class TennisDatabaseException extends java.lang.Exception {
 
 	// Desc.: Constructor.
 	// Input: Description of the runtime error.

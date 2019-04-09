@@ -2,7 +2,7 @@
 // Giuseppe Turini
 // CS-102, Spring 2019
 // Assignment 1
-
+/*
 package TennisDatabase;
 
 // Interface (package-private) providing the specifications for the TennisPlayerNode class.
@@ -31,3 +31,4 @@ interface TennisPlayerNodeInterface {
 	public TennisMatch[] getMatches() throws TennisDatabaseRuntimeException;
 
 }
+*/
