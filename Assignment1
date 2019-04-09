@@ -1,7 +1,0 @@
-public class Assignment1 {
-
-    //...
-    public static void main(String[] args) {u
-        System.out.println("Hello bruh");
-    }
-}
