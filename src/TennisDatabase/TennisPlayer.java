@@ -12,13 +12,13 @@ public class TennisPlayer //implements TennisPlayerInterface
    private String country;
    
    //constructor
-   public TennisPlayer(String[] playerData)
+   public TennisPlayer(String id, String firstName, String lastName, int birthYear, String country)
    {
-      id = playerData[1];
-      firstName = playerData[2];
-      lastName = playerData[3];
-      birthYear = Integer.parseInt(playerData[4]);
-      country = playerData[5];
+      this.id = id;
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.birthYear = birthYear;
+      this.country = country;
    }
    
    //debug

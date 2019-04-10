@@ -10,12 +10,12 @@ public class TennisMatch
    private String scores;
    
    //constructor
-   public TennisMatch(String[] matchData)
+   public TennisMatch(String player1, String player2, String date, String location, String scores)
    {
-      player1 = matchData[1];
-      player2 = matchData[2];
-      date = matchData[3];
-      location = matchData[4];
-      scores = matchData[5];
+      this.player1 = player1;
+      this.player2 = player2;
+      this.date = date;
+      this.location = location;
+      this.scores = scores;
    }
 }
