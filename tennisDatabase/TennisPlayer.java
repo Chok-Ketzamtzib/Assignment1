@@ -2,6 +2,10 @@ package tennisDatabase;
 
 public class TennisPlayer implements TennisPlayerInterface {
 
+	public TennisPlayer(String id, String firstName, String lastName, int year, String country) {
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public int compareTo(TennisPlayer arg0) {
 		// TODO Auto-generated method stub
@@ -10,7 +14,7 @@ public class TennisPlayer implements TennisPlayerInterface {
 
 	@Override
 	public String getId() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
