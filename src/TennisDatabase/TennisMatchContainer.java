@@ -30,13 +30,13 @@ public class TennisMatchContainer implements TennisMatchContainerInterface
             //array not full
             this.matchArray[this.matchCount] = m;
             this.matchCount++;
-        
+        System.out.println("MATCH LOADED");
     }
 
     @Override
     public TennisMatch[] getAllMatches() throws TennisDatabaseRuntimeException
     {
-        return new TennisMatch[0];
+        return matchArray;
     }
 
     @Override

@@ -6,6 +6,9 @@ import java.util.Scanner;
 
 public class TennisDatabase implements TennisDatabaseInterface
 {
+
+    TennisMatchContainer matchContainer = new TennisMatchContainer();
+
     @Override
     public void loadFromFile(String fileName) throws TennisDatabaseException, TennisDatabaseRuntimeException
     {
@@ -13,6 +16,8 @@ public class TennisDatabase implements TennisDatabaseInterface
         Scanner fileScan;
         int playerCount = 1;
         int matchCount = 1;
+
+
 
         try
         {
@@ -24,7 +29,6 @@ public class TennisDatabase implements TennisDatabaseInterface
             throw new TennisDatabaseException("ERROR: Input file not found.");
         }
 
-        //CONCEPT CODE FROM PROF
 
         while (fileScan.hasNextLine())
         {
@@ -35,6 +39,7 @@ public class TennisDatabase implements TennisDatabaseInterface
             if (token.equals("PLAYER"))
             {
             //TODO: Insert try catch blocks
+                System.out.println("PLAYER DETECTED");
                 String id = inScan.next().toUpperCase();
                 String firstName = inScan.next().toUpperCase();
                 String lastName = inScan.next().toUpperCase();
@@ -43,6 +48,20 @@ public class TennisDatabase implements TennisDatabaseInterface
                 TennisPlayer p = new TennisPlayer(id,firstName,lastName,year,country);
                 //tennisplayercountainer.insertplayer(p)
                 playerCount++;
+
+            }
+            if (token.equals("MATCH"))
+            {
+                System.out.println("MATCH DETECTED");
+                String playerId1 = inScan.next().toUpperCase();
+                String playerId2 = inScan.next().toUpperCase();
+                int[] date = splitDate(inScan.next());
+                String location = inScan.next().toUpperCase();
+                String score = inScan.next().toUpperCase();
+
+                TennisMatch m = new TennisMatch(playerId1, playerId2, date[0], date[1],date [2], location, score);
+                matchContainer.insertMatch(m);
+
             }
         }
 
@@ -63,7 +82,7 @@ public class TennisDatabase implements TennisDatabaseInterface
     @Override
     public TennisMatch[] getAllMatches() throws TennisDatabaseRuntimeException
     {
-        return new TennisMatch[0];
+        return matchContainer.getAllMatches();
     }
 
     @Override
@@ -76,5 +95,20 @@ public class TennisDatabase implements TennisDatabaseInterface
     public void insertMatch(String idPlayer1, String idPlayer2, int year, int month, int day, String tournament, String score) throws TennisDatabaseException
     {
 
+    }
+
+    //splits the date into a String array for use with TennisMatch constructor
+    public int[] splitDate(String date)
+    {
+        String year = date.substring(0,3);
+        String month= date.substring(4,5);
+        String day = date.substring(6,7);
+
+        int[] output = new int[3];
+        output[0] = Integer.parseInt(year);
+        output[1] = Integer.parseInt(month);
+        output[2] = Integer.parseInt(day);
+
+        return output;
     }
 }

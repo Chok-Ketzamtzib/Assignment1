@@ -20,7 +20,7 @@ public class Assignment1
         int actionInput;
 
         TennisDatabase database = new TennisDatabase();
-        //BEGIN TEST CODE
+        /*BEGIN TEST CODE
         TennisMatchContainer tmc = new TennisMatchContainer();//test code
         TennisMatch m1 = new TennisMatch("","",2019, 4, 16, "", "");
         TennisMatch m2 = new TennisMatch("","",2019, 5, 16, "", "");
@@ -35,7 +35,7 @@ public class Assignment1
         {
             System.out.println("ERROR IN TEST CODE");
         }
-        // END TEST CODE
+        END TEST CODE */
         try
         {
             String fileName = args[0];
@@ -52,11 +52,11 @@ public class Assignment1
         }
         catch (TennisDatabaseRuntimeException e)
         {
-            System.out.println("...");
+            System.out.println("LOAD ERROR RUNTIME");
         }
         catch (TennisDatabaseException e)
         {
-            System.out.println("...");
+            System.out.println("LOAD ERROR");
         }
 
 
@@ -90,10 +90,16 @@ public class Assignment1
                     {
                         System.out.println("...");
                     }
-                    //TODO: print all matches
                     break;
                 case 3:
                     System.out.println("You selected \"Print all tennis matches.\"");
+
+                    //TODO: Make toString for TennisMatch
+                    TennisMatch[] matchArray = database.getAllMatches();
+                    for (int i = 0; i < matchArray.length; i++)
+                    {
+                        System.out.println(matchArray[i]);
+                    }
                     break;
                 case 4:
                     System.out.println("You selected \"Insert a tennis player.\"");
