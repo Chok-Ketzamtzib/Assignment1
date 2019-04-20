@@ -10,7 +10,7 @@ public class TennisDatabase implements TennisDatabaseInterface
     public void loadFromFile(String fileName) throws TennisDatabaseException, TennisDatabaseRuntimeException
     {
 
-        Scanner fileScan = null;
+        Scanner fileScan;
         int playerCount = 1;
         int matchCount = 1;
 
@@ -34,21 +34,15 @@ public class TennisDatabase implements TennisDatabaseInterface
 
             if (token.equals("PLAYER"))
             {
-                /*
-                try
-                {
-                    String id = inScan.next().toUpperCase();
-                    String firstName = inScan.next().toUpperCase();
-                    String lastName = inScan.next().toUpperCase();
-                    int year = inScan.nextInt();
-                    String country = inScan.next().toUpperCase();
-                    TennisPlayer p = new TennisPlayer(id,firstName,lastName,year,country);
-                    //tennisplayercountainer.insertplayer(p)
-                    playerCount++;
-
-                }
-
-                 */
+            //TODO: Insert try catch blocks
+                String id = inScan.next().toUpperCase();
+                String firstName = inScan.next().toUpperCase();
+                String lastName = inScan.next().toUpperCase();
+                int year = inScan.nextInt();
+                String country = inScan.next().toUpperCase();
+                TennisPlayer p = new TennisPlayer(id,firstName,lastName,year,country);
+                //tennisplayercountainer.insertplayer(p)
+                playerCount++;
             }
         }
 
