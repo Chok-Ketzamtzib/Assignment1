@@ -6,7 +6,6 @@
 import TennisDatabase.TennisDatabase;
 import TennisDatabase.TennisDatabaseException;
 import TennisDatabase.TennisDatabaseRuntimeException;
-import TennisDatabase.TennisMatchContainer;
 import TennisDatabase.TennisMatch;
 
 import java.util.Scanner;
@@ -20,22 +19,7 @@ public class Assignment1
         int actionInput;
 
         TennisDatabase database = new TennisDatabase();
-        /*BEGIN TEST CODE
-        TennisMatchContainer tmc = new TennisMatchContainer();//test code
-        TennisMatch m1 = new TennisMatch("","",2019, 4, 16, "", "");
-        TennisMatch m2 = new TennisMatch("","",2019, 5, 16, "", "");
-        TennisMatch m3 = new TennisMatch("","",2019, 6, 16, "", "");
-        try
-        {
-            tmc.insertMatch(m1);
-            tmc.insertMatch(m2);
-            tmc.insertMatch(m3);
-        }
-        catch(TennisDatabaseException e)
-        {
-            System.out.println("ERROR IN TEST CODE");
-        }
-        END TEST CODE */
+
         try
         {
             String fileName = args[0];
