@@ -1,6 +1,5 @@
-//TODO: Fix Heading Comments
 
-// Giuseppe Turini
+// Steven Causley
 // CS-102, Spring 2019
 // Assignment 1
 

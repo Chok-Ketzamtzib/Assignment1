@@ -2,23 +2,23 @@
 // Giuseppe Turini
 // CS-102, Spring 2019
 // Assignment 1
-/*
+
 package TennisDatabase;
 
-// Interface (package-private) providing the specifications for the TennisPlayerNode class.
+// Interface (package-private) providing the specifications for the TennisPlayerContainerNode class.
 interface TennisPlayerNodeInterface {
 
 	// Accessors (getters).
 	public TennisPlayer getPlayer();
 
-	public TennisPlayerNode getPrev();
+	public TennisPlayerContainerNode getPrev();
 
-	public TennisPlayerNode getNext();
+	public TennisPlayerContainerNode getNext();
 
 	// Modifiers (setters).
-	public void setPrev(TennisPlayerNode p);
+	public void setPrev(TennisPlayerContainerNode p);
 
-	public void setNext(TennisPlayerNode n);
+	public void setNext(TennisPlayerContainerNode n);
 
 	// Desc.: Insert a TennisMatch object (reference) into this node.
 	// Input: A TennisMatch object (reference).
@@ -31,4 +31,3 @@ interface TennisPlayerNodeInterface {
 	public TennisMatch[] getMatches() throws TennisDatabaseRuntimeException;
 
 }
-*/
