@@ -71,12 +71,45 @@ public class TennisMatch implements TennisMatchInterface
     @Override
     public void print()
     {
-
+        System.out.println(String.format("%02d", year) + "/" + String.format("%02d", month) +"/" + String.format("%02d", day));
     }
 
     @Override
-    public int compareTo(TennisMatch o)
+    public int compareTo(TennisMatch inMatch) throws NullPointerException
     {
-        return 0;
+        if(this.year > inMatch.year)
+        {
+            return 1;
+        }
+        else if(this.year < inMatch.year)
+        {
+            return -1;
+        }
+        else
+        {
+            if (this.month > inMatch.month)
+            {
+                return 1;
+            }
+            else if (this.month < inMatch.month)
+            {
+                return -1;
+            }
+            else
+            {
+                if (this.day > inMatch.day)
+                {
+                    return 1;
+                }
+                if (this.day < inMatch.day)
+                {
+                   return -1;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+        }
     }
 }

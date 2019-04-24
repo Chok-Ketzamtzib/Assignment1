@@ -80,9 +80,16 @@ public class Assignment1
 
                     //TODO: Make toString for TennisMatch
                     TennisMatch[] matchArray = database.getAllMatches();
-                    for (int i = 0; i < matchArray.length; i++)
+                    try
                     {
-                        System.out.println(matchArray[i]);
+                        for (int i = 0; i < matchArray.length; i++)
+                        {
+                            matchArray[i].print();
+                        }
+                    }
+                    catch (NullPointerException e)
+                    {
+
                     }
                     break;
                 case 4:

@@ -27,8 +27,19 @@ public class TennisMatchContainer implements TennisMatchContainerInterface
             this.maxMatches = this.matchArray.length;
         }
 
-        //array not full
-        this.matchArray[this.matchCount] = m;
+        int point = 0;
+        while((point < this.matchCount)&&(this.matchArray[point].compareTo(m)>0))
+        {
+            point++;
+        }
+        if(point < this.matchCount)
+        {
+            for(int i = this.matchCount - 1; i >= point; i--)
+            {
+                this.matchArray[i+1] = this.matchArray[i];
+            }
+        }
+        this.matchArray[point] = m;
         this.matchCount++;
         System.out.println("MATCH LOADED");
     }
