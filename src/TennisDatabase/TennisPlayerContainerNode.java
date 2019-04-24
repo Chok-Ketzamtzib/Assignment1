@@ -1,3 +1,7 @@
+//Steven Causley
+//CS-192, Spring 2019
+//Assignment 1
+
 package TennisDatabase;
 
 public class TennisPlayerContainerNode implements TennisPlayerNodeInterface

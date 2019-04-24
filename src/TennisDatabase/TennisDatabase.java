@@ -1,3 +1,6 @@
+// Steven Causley
+// CS-102, Spring 2019
+// Assignment 1
 package TennisDatabase;
 
 import java.io.File;
@@ -94,15 +97,17 @@ public class TennisDatabase implements TennisDatabaseInterface
     @Override
     public void insertMatch(String idPlayer1, String idPlayer2, int year, int month, int day, String tournament, String score) throws TennisDatabaseException
     {
+        TennisMatch m = new TennisMatch(idPlayer1, idPlayer2, year, month,day, tournament, score);
 
+        matchContainer.insertMatch(m);
     }
 
     //splits the date into a String array for use with TennisMatch constructor
     public int[] splitDate(String date)
     {
-        String year = date.substring(0,3);
-        String month= date.substring(4,5);
-        String day = date.substring(6,7);
+        String year = date.substring(0,4);
+        String month= date.substring(4,6);
+        String day = date.substring(6,8);
 
         int[] output = new int[3];
         output[0] = Integer.parseInt(year);
