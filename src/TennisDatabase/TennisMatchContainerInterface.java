@@ -23,7 +23,7 @@ interface TennisMatchContainerInterface {
    // Desc.: Returns all matches of input player (id) arranged in the output array (sorted by date, most recent first).
    // Input: The id of the tennis player.
    // Output: Throws an unchecked (non-critical) exception if there are no tennis matches in the list.
-   public TennisMatch[] getMatchesOfPlayer( String playerId ) throws TennisDatabaseRuntimeException;
+   public TennisMatch[] getMatchesOfPlayer( String playerId ) throws TennisDatabaseRuntimeException, TennisDatabaseException;
    
 }
 

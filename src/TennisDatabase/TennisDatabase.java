@@ -72,6 +72,12 @@ public class TennisDatabase implements TennisDatabaseInterface
     }
 
     @Override
+    public TennisPlayer getPlayer(String id) throws TennisDatabaseRuntimeException
+    {
+        return null;
+    }
+
+    @Override
     public TennisPlayer[] getAllPlayers() throws TennisDatabaseRuntimeException
     {
         return new TennisPlayer[0];
