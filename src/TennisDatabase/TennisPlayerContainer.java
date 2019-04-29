@@ -24,6 +24,7 @@ public class TennisPlayerContainer implements TennisPlayerContainerInterface
         this.head.prev = newNode;//2d linking old first node to new node
         //Step 3: Link head to the new first node
         this.head = newNode;
+        System.out.println("PLAYER LOADED");
     }
     public TennisPlayer getPlayer(String id)
     {

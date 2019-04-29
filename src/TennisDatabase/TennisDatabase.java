@@ -11,6 +11,7 @@ public class TennisDatabase implements TennisDatabaseInterface
 {
 
     TennisMatchContainer matchContainer = new TennisMatchContainer();
+    TennisPlayerContainer playerContainer = new TennisPlayerContainer();
 
     @Override
     public void loadFromFile(String fileName) throws TennisDatabaseException, TennisDatabaseRuntimeException
@@ -49,7 +50,7 @@ public class TennisDatabase implements TennisDatabaseInterface
                 int year = inScan.nextInt();
                 String country = inScan.next().toUpperCase();
                 TennisPlayer p = new TennisPlayer(id,firstName,lastName,year,country);
-                //tennisplayercountainer.insertplayer(p)
+                //playerContainer.insertAtFront(p);
                 playerCount++;
 
             }

@@ -4,7 +4,7 @@
 
 package TennisDatabase;
 
-public class TennisPlayerContainerNode implements TennisPlayerNodeInterface
+public class TennisPlayerContainerNode implements TennisPlayerContainerNodeInterface
 {
     //TODO: Change to private variables, work with getters/setters
     TennisPlayerContainerNode next;

@@ -19,8 +19,6 @@ public class TennisMatchContainer implements TennisMatchContainerInterface
     {
         if(this.matchCount == maxMatches)
         {
-            //array full
-            //throw new TennisDatabaseException("ERROR: Container full, cannot insert match.");
             TennisMatch[] newArray = new TennisMatch[this.matchArray.length * 2];
             for(int i =0; i < this.matchCount; i++)
             {

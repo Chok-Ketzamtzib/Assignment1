@@ -71,7 +71,6 @@ public class TennisMatch implements TennisMatchInterface
         return 0;
     }
 
-    @Override
     public void print()
     {
         System.out.println(String.format("%02d", year) + "/" + String.format("%02d", month) +"/" + String.format("%02d", day));
