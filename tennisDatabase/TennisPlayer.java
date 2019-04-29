@@ -4,9 +4,9 @@ public class TennisPlayer implements TennisPlayerInterface {
 
 	private String id, firstName, lastName, country;
 	private int year;
-	
+
 	public TennisPlayer(String id, String firstName, String lastName, int year, String country) {
-		
+
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -21,7 +21,7 @@ public class TennisPlayer implements TennisPlayerInterface {
 
 	@Override
 	public String getId() {
-		
+
 		return id;
 	}
 

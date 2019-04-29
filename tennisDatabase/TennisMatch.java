@@ -1,10 +1,6 @@
 package tennisDatabase;
 
-
-
 public class TennisMatch implements TennisMatchInterface {
-	
-	
 
 	@Override
 	public int compareTo(TennisMatch o) {
@@ -60,7 +56,6 @@ public class TennisMatch implements TennisMatchInterface {
 		return 0;
 	}
 
-	@Override
 	public void print() {
 		// TODO Auto-generated method stub
 

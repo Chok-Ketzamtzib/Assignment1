@@ -11,57 +11,48 @@ public class TennisDatabase implements TennisDatabaseInterface {
 
 	@Override
 	public void loadFromFile(String fileName) throws TennisDatabaseException, TennisDatabaseRuntimeException {
-		
 
-	        Scanner fileScan;
-	        int playerCount = 1;
-	        int matchCount = 1;
+		Scanner fileScan;
+		int playerCount = 1;
+		int matchCount = 1;
 
-	        TennisMatchContainer matchContainer = new TennisMatchContainer();
-	        
-	        try
-	        {
-	            File inFile = new File(fileName);
-	            fileScan = new Scanner(inFile).useDelimiter("[\\r\\n]+");
-	        }
-	        catch (FileNotFoundException e)
-	        {
-	            throw new TennisDatabaseException("ERROR: Input file not found.");
-	        }
+		TennisMatchContainer matchContainer = new TennisMatchContainer();
 
+		try {
+			File inFile = new File(fileName);
+			fileScan = new Scanner(inFile).useDelimiter("[\\r\\n]+");
+		} catch (FileNotFoundException e) {
+			throw new TennisDatabaseException("ERROR: Input file not found.");
+		}
 
-	        while (fileScan.hasNextLine())
-	        {
-	        	
-	            String inString = fileScan.nextLine();
-	            Scanner inScan = new Scanner(inString).useDelimiter("[\\r\\n/]");
-	            String token = inScan.next().toUpperCase();
+		while (fileScan.hasNextLine()) {
 
-	            if (token.equals("PLAYER")){
-	            
-	            	System.out.println(inString);
-	            	
-	                String id = inScan.next().toUpperCase();
-					String firstName = inScan.next().toUpperCase();
-					String lastName = inScan.next().toUpperCase();
-					int year = inScan.nextInt();
-					String country = inScan.next().toUpperCase();
-					TennisPlayer p = new TennisPlayer(id,firstName,lastName,year,country);
-					//TennisPlayerContainer.insertPlayer(p)
-					playerCount++;
-	            }
-	                
-	                
-	                else if (token.equals("MATCH")) {
-	            	System.out.println(inString);
-	            	matchContainer.insertMatch();	            	
-	                }
-	               
-	                 
-	            }
-	        
+			String inString = fileScan.nextLine();
+			Scanner inScan = new Scanner(inString).useDelimiter("[\\r\\n/]");
+			String token = inScan.next().toUpperCase();
 
+			if (token.equals("PLAYER")) {
+
+				System.out.println(inString);
+
+				String id = inScan.next().toUpperCase();
+				String firstName = inScan.next().toUpperCase();
+				String lastName = inScan.next().toUpperCase();
+				int year = inScan.nextInt();
+				String country = inScan.next().toUpperCase();
+				TennisPlayer p = new TennisPlayer(id, firstName, lastName, year, country);
+				// TennisPlayerContainer.insertPlayer(p)
+				playerCount++;
 			}
+
+			else if (token.equals("MATCH")) {
+				System.out.println(inString);
+				// matchContainer.insertMatch();
+			}
+
+		}
+
+	}
 
 	@Override
 	public TennisPlayer[] getAllPlayers() throws TennisDatabaseRuntimeException {
