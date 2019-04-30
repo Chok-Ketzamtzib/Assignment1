@@ -10,19 +10,18 @@ import java.util.Scanner;
 public class TennisDatabase implements TennisDatabaseInterface
 {
 
-    TennisMatchContainer matchContainer = new TennisMatchContainer();
-    TennisPlayerContainer playerContainer = new TennisPlayerContainer();
+    private TennisMatchContainer matchContainer = new TennisMatchContainer();
+    private TennisPlayerContainer playerContainer = new TennisPlayerContainer();
 
     @Override
     public void loadFromFile(String fileName) throws TennisDatabaseException, TennisDatabaseRuntimeException
     {
 
         Scanner fileScan;
-        int playerCount = 1;
-        int matchCount = 1;
 
 
 
+        //check that file is valid
         try
         {
             File inFile = new File(fileName);
@@ -50,8 +49,7 @@ public class TennisDatabase implements TennisDatabaseInterface
                 int year = inScan.nextInt();
                 String country = inScan.next().toUpperCase();
                 TennisPlayer p = new TennisPlayer(id,firstName,lastName,year,country);
-                //playerContainer.insertAtFront(p);
-                playerCount++;
+                playerContainer.insertPlayer(p);
 
             }
             if (token.equals("MATCH"))

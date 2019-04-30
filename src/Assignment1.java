@@ -20,6 +20,7 @@ public class Assignment1
 
         TennisDatabase database = new TennisDatabase();
 
+        //check to see if argument was entered
         try
         {
             String fileName = args[0];
@@ -87,7 +88,7 @@ public class Assignment1
                             matchArray[i].print();
                         }
                     }
-                    catch (NullPointerException e)
+                    catch (NullPointerException e) //do nothing with empty array spaces
                     {
 
                     }

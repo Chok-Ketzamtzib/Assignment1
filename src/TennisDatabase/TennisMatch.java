@@ -12,6 +12,9 @@ public class TennisMatch implements TennisMatchInterface
     private int day;
     private String tournament;
     private String score;
+
+    private int winner; //{1,2}: 1 mean player1 won, 2 means player2 won
+
     public TennisMatch (String idPlayer1, String idPlayer2, int year, int month, int day, String tournament, String score)
     {
         this.idPlayer1 = idPlayer1;
@@ -21,6 +24,27 @@ public class TennisMatch implements TennisMatchInterface
         this.day = day;
         this.tournament = tournament;
         this.score = score;
+        try
+        {
+            this.winner = TennisMatchInterface.processMatchScore(this.score);
+        }
+        catch (TennisDatabaseRuntimeException e)
+        {
+            throw new TennisDatabaseRuntimeException("Match creation failed: score invalid");
+        }
+    }
+
+    //copy constructor
+    public TennisMatch(TennisMatch match)
+    {
+        this.idPlayer1 = match.idPlayer1;
+        this.idPlayer2 = match.idPlayer2;
+        this.year = match.year;
+        this.month = match.month;
+        this.day = match.day;
+        this.tournament = match.tournament;
+        this.score = match.score;
+        this.winner = match.winner;
     }
 
     @Override
@@ -68,11 +92,12 @@ public class TennisMatch implements TennisMatchInterface
     @Override
     public int getWinner()
     {
-        return 0;
+        return winner;
     }
 
     public void print()
     {
+        //TODO: Make proper printout
         System.out.println(String.format("%02d", year) + "/" + String.format("%02d", month) +"/" + String.format("%02d", day));
     }
 

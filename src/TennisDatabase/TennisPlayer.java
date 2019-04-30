@@ -11,6 +11,10 @@ public class TennisPlayer implements TennisPlayerInterface
     private String lastName;
     private int year;
     private String country;
+
+    private int wins; //Read-only
+    private int losses;//Read-only
+
     public TennisPlayer(String id, String firstName, String lastName, int year, String country)
     {
         this.id = id;
@@ -57,8 +61,5 @@ public class TennisPlayer implements TennisPlayerInterface
     }
 
     @Override
-    public int compareTo(TennisPlayer o)
-    {
-        return 0;
-    }
+    public int compareTo(TennisPlayer o) { return this.id.compareTo( o.id ); }
 }
