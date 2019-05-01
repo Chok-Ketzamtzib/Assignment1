@@ -27,6 +27,7 @@ public class TennisMatch implements TennisMatchInterface
         try
         {
             this.winner = TennisMatchInterface.processMatchScore(this.score);
+
         }
         catch (TennisDatabaseRuntimeException e)
         {
@@ -97,8 +98,9 @@ public class TennisMatch implements TennisMatchInterface
 
     public void print()
     {
-        //TODO: Make proper printout
-        System.out.println(String.format("%02d", year) + "/" + String.format("%02d", month) +"/" + String.format("%02d", day));
+
+        System.out.println(String.format("%02d", year) + "/" + String.format("%02d", month) +"/" + String.format("%02d", day) + "," + " "
+            + idPlayer1 + "-" + idPlayer2 + "," + " " + tournament+ "," + " " + score);
     }
 
     @Override
@@ -138,5 +140,16 @@ public class TennisMatch implements TennisMatchInterface
                 }
             }
         }
+    }
+
+    public boolean dupeCheckMatch(TennisMatch inMatch)
+    {
+        if(this.idPlayer1.equals(inMatch.idPlayer1) && this.idPlayer2.equals(inMatch.idPlayer2) &&
+            this.year == inMatch.year && this.month == inMatch.month && this.day == inMatch.day &&
+            this.tournament.equals(inMatch.tournament) && this.score.equals(inMatch.score))
+        {
+          return true;
+        }
+        return false;
     }
 }

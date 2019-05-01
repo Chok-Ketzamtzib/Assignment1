@@ -62,4 +62,21 @@ public class TennisPlayer implements TennisPlayerInterface
 
     @Override
     public int compareTo(TennisPlayer o) { return this.id.compareTo( o.id ); }
+
+    public void addWin()
+    {
+        wins += 1;
+    }
+    public void addLoss()
+    {
+        losses += 1;
+    }
+    public int getWins()
+    {
+        return wins;
+    }
+    public int getLosses()
+    {
+        return losses;
+    }
 }

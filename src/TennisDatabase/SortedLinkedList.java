@@ -66,6 +66,7 @@ class SortedLinkedList< T extends Comparable< ? super T > > implements SortedLin
          //           "Note: Recompile with -Xlint:unchecked for details."
          // Use the annotation "@SuppressWarnings("unchecked")" to suppress the compile warnings (above) about unchecked generic operations.
          @SuppressWarnings("unchecked")
+
          T[] resArray = (T[]) new Object[ this.numItems ];
          // Transfer all list item in result array.
          int i = 0;

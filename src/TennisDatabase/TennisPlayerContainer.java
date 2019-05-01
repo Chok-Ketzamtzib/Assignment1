@@ -15,47 +15,101 @@ public class TennisPlayerContainer implements TennisPlayerContainerInterface
     }
 
 
-    public TennisPlayer getPlayer(String id)
+    public TennisPlayer getPlayer(String id) throws TennisDatabaseRuntimeException
     {
-        return null;
+        TennisPlayerContainerNode node = this.head;
+        boolean idFound = false;
+        int nodeIndex = 0;
+        while( ( nodeIndex < this.playerCount ) && ( node.getPlayer().getId().compareTo(id) < 0 ) ) {
+            node = node.getNext();
+            nodeIndex++;
+        }
+        // Check if we found the node.
+        if( ( node != null ) && ( node.getPlayer().getId().equals(id) ) ) {
+            idFound = true;
+        }
+
+        if(idFound)
+        {
+            return node.getPlayer();
+        }
+        else
+        {
+            throw new TennisDatabaseRuntimeException ("Player could not be found.");
+        }
+    }
+
+    public TennisMatch[] getPlayerMatches(String id) throws TennisDatabaseRuntimeException
+    {
+        TennisPlayerContainerNode node = this.head;
+        boolean idFound = false;
+        int nodeIndex = 0;
+        while( ( nodeIndex < this.playerCount ) && ( node.getPlayer().getId().compareTo(id) < 0 ) ) {
+            node = node.getNext();
+            nodeIndex++;
+        }
+        // Check if we found the node.
+        if( ( node != null ) && ( node.getPlayer().getId().equals(id) ) ) {
+            idFound = true;
+        }
+
+        if(idFound)
+        {
+            return node.getMatches();
+        }
+        else
+        {
+            throw new TennisDatabaseRuntimeException ("Player could not be found.");
+        }
     }
     @Override
     public void insertPlayer(TennisPlayer p) throws TennisDatabaseException
     {
-        // Special case: list empty, no need to consider sorting, insert at front.
-        if( this.playerCount == 0 ) {
-            // Create a sorted doubly-linked circular list with only 1 node.
-            TennisPlayerContainerNode newNode = new TennisPlayerContainerNode(p);
-            newNode.setNext(newNode);
-            newNode.setPrev(newNode);
-            this.head = newNode;
-            this.playerCount++;
-        }
-        else {
-            // List not empty: find the point of insertion.
-            TennisPlayerContainerNode currNode = this.head;
-            TennisPlayerContainerNode prevNode = currNode.getPrev();
-            int currNodeIndex = 0;
-            while( ( currNodeIndex < this.playerCount ) &&
-                   ( currNode.getPlayer().compareTo( p ) < 0 ) ) {
-                prevNode = currNode;
-                currNode = currNode.getNext();
-                currNodeIndex++;
-            }
-            // Here, "currNode" and "prevNode" point at the 2 sides of the insertion point.
-            // Perform insertion.
-            TennisPlayerContainerNode newNode = new TennisPlayerContainerNode(p);
-            newNode.setNext(currNode);
-            newNode.setPrev(prevNode);
-            prevNode.setNext(newNode);
-            currNode.setPrev(newNode);
-            this.playerCount++;
-            // Special case: insertion point at front.
-            if( currNodeIndex == 0 ) {
+        if(!dupePlayerCheck(p))
+        {
+            // Special case: list empty, no need to consider sorting, insert at front.
+            if (this.playerCount == 0)
+            {
+                // Create a sorted doubly-linked circular list with only 1 node.
+                TennisPlayerContainerNode newNode = new TennisPlayerContainerNode(p);
+                newNode.setNext(newNode);
+                newNode.setPrev(newNode);
                 this.head = newNode;
+                this.playerCount++;
+            } else
+            {
+                // List not empty: find the point of insertion.
+                TennisPlayerContainerNode currNode = this.head;
+                TennisPlayerContainerNode prevNode = currNode.getPrev();
+                int currNodeIndex = 0;
+                while ((currNodeIndex < this.playerCount) &&
+                        (currNode.getPlayer().compareTo(p) < 0))
+                {
+                    prevNode = currNode;
+                    currNode = currNode.getNext();
+                    currNodeIndex++;
+                }
+                // Here, "currNode" and "prevNode" point at the 2 sides of the insertion point.
+                // Perform insertion.
+                TennisPlayerContainerNode newNode = new TennisPlayerContainerNode(p);
+                newNode.setNext(currNode);
+                newNode.setPrev(prevNode);
+                prevNode.setNext(newNode);
+                currNode.setPrev(newNode);
+                this.playerCount++;
+                // Special case: insertion point at front.
+                if (currNodeIndex == 0)
+                {
+                    this.head = newNode;
+                }
             }
+            System.out.println("PLAYER LOADED");
+            System.out.println("Player Added Successfully");
         }
-        System.out.println("PLAYER LOADED");
+        else
+        {
+            System.out.println("Duplicate Player Detected. Insertion Failed");
+        }
     }
 
     @Override
@@ -103,6 +157,41 @@ public class TennisPlayerContainer implements TennisPlayerContainerInterface
     @Override
     public TennisPlayer[] getAllPlayers() throws TennisDatabaseRuntimeException
     {
-        return new TennisPlayer[0];
+        TennisPlayer[] output = new TennisPlayer[playerCount];
+        TennisPlayerContainerNode node = head;
+
+        output[0]= head.getPlayer();
+        node = node.getNext();
+
+        for(int i = 1; i < playerCount; i++)
+        {
+            output[i] = node.getPlayer();
+            node = node.getNext();
+        }
+
+        return output;// getAllPlayersRec(node.getNext(), output);
+    }
+    /*
+    public TennisPlayer[] getAllPlayersRec(TennisPlayerContainerNode node, TennisPlayer[] arrayIn)
+    {
+        arrayIn[node.]
+    }
+
+     */
+    public boolean dupePlayerCheck(TennisPlayer inPlayer)
+    {
+        TennisPlayerContainerNode node = this.head;
+        for(int i = 0; i < playerCount; i++)
+        {
+            if (node.getPlayer().getId().equals(inPlayer.getId()))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    public int getPlayerCount()
+    {
+        return playerCount;
     }
 }

@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class Assignment1
 {
-    public static void main(String[] args)
+    public static void main(String[] args) throws TennisDatabaseException
     {
         Scanner consoleIn = new Scanner(System.in);
         int actionInput;
@@ -60,8 +60,8 @@ public class Assignment1
             {
                 case 1:
                     System.out.println("You selected \"Print all tennis players.\"");
-                    //database.getAllPlayers();
-                    //TODO: print all players
+                    database.printAllPlayer();
+
                     break;
                 case 2:
                     System.out.println("You selected \"Print all tennis matches of a player.\"");
@@ -69,23 +69,29 @@ public class Assignment1
                     String idInput = consoleIn.next();
                     try
                     {
-                        database.getMatchesOfPlayer(idInput);
+                        database.printMatchesOfPlayer(idInput);
                     }
-                    catch (TennisDatabaseException e)
+                    catch (TennisDatabaseRuntimeException e)
                     {
-                        System.out.println("...");
+                        System.out.println("Could not print matches for id: " + idInput);
                     }
                     break;
                 case 3:
                     System.out.println("You selected \"Print all tennis matches.\"");
 
-                    //TODO: Make toString for TennisMatch
                     TennisMatch[] matchArray = database.getAllMatches();
                     try
                     {
-                        for (int i = 0; i < matchArray.length; i++)
+                        if(database.getMatchCount() == 0)
                         {
-                            matchArray[i].print();
+                            System.out.println("No Matches in System");
+                        }
+                        else
+                        {
+                            for (int i = 0; i < matchArray.length; i++)
+                            {
+                                matchArray[i].print();
+                            }
                         }
                     }
                     catch (NullPointerException e) //do nothing with empty array spaces
@@ -95,11 +101,40 @@ public class Assignment1
                     break;
                 case 4:
                     System.out.println("You selected \"Insert a tennis player.\"");
-                    //TODO: Insert code
+                    System.out.println("Input player id:");
+                    String newId = consoleIn.next();
+                    System.out.println("Input first name:");
+                    String newFirstName = consoleIn.next();
+                    System.out.println("Input last name:");
+                    String newLastName = consoleIn.next();
+                    System.out.println("Input birth year:");
+                    int newBirthYear = consoleIn.nextInt();
+                    System.out.println("Input country:");
+                    String newCountry = consoleIn.next();
+                    System.out.println("Adding player...");
+                    database.insertPlayer(newId, newFirstName, newLastName, newBirthYear, newCountry);
+
                     break;
                 case 5:
                     System.out.println("You selected \"Insert a tennis match.\"");
-                    //TODO: Insert code
+                    System.out.println("Input player 1 id:");
+                    String newId1 = consoleIn.next();
+                    System.out.println("Input player 2 id:");
+                    String newId2 = consoleIn.next();
+                    System.out.println("Input year of match");
+                    int newYear = consoleIn.nextInt();
+                    System.out.println("Input month of match");
+                    int newMonth = consoleIn.nextInt();
+                    System.out.println("Input day of match");
+                    int newDay = consoleIn.nextInt();
+                    System.out.println("Input tournament name:");
+                    consoleIn.nextLine();
+                    String newName = consoleIn.nextLine();
+                    System.out.println("Input scores, separated by commas:");
+                    String newScore = consoleIn.next();
+                    System.out.println("Adding match...");
+                    database.insertMatch(newId1, newId2, newYear, newMonth, newDay, newName, newScore);
+                    System.out.println("Match Added Successfully");
                     break;
                 case 9:
                     System.out.println("Exiting...");

@@ -56,4 +56,9 @@ public class TennisMatchContainer implements TennisMatchContainerInterface
     {
         return new TennisMatch[0];
     }
+    public int getMatchCount()
+    {
+        return matchCount;
+    }
+
 }
