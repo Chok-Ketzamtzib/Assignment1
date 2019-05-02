@@ -7,7 +7,7 @@ package TennisDatabase;
 public class TennisPlayerContainer implements TennisPlayerContainerInterface
 {
     private TennisPlayerContainerNode head;
-    private int playerCount =0;
+    private int playerCount = 0;
 
     public TennisPlayerContainer()
     {
@@ -20,22 +20,23 @@ public class TennisPlayerContainer implements TennisPlayerContainerInterface
         TennisPlayerContainerNode node = this.head;
         boolean idFound = false;
         int nodeIndex = 0;
-        while( ( nodeIndex < this.playerCount ) && ( node.getPlayer().getId().compareTo(id) < 0 ) ) {
+        while ((nodeIndex < this.playerCount) && (node.getPlayer().getId().compareTo(id) < 0))
+        {
             node = node.getNext();
             nodeIndex++;
         }
         // Check if we found the node.
-        if( ( node != null ) && ( node.getPlayer().getId().equals(id) ) ) {
+        if ((node != null) && (node.getPlayer().getId().equals(id)))
+        {
             idFound = true;
         }
 
-        if(idFound)
+        if (idFound)
         {
             return node.getPlayer();
-        }
-        else
+        } else
         {
-            throw new TennisDatabaseRuntimeException ("Player could not be found.");
+            throw new TennisDatabaseRuntimeException("Player could not be found.");
         }
     }
 
@@ -44,28 +45,30 @@ public class TennisPlayerContainer implements TennisPlayerContainerInterface
         TennisPlayerContainerNode node = this.head;
         boolean idFound = false;
         int nodeIndex = 0;
-        while( ( nodeIndex < this.playerCount ) && ( node.getPlayer().getId().compareTo(id) < 0 ) ) {
+        while ((nodeIndex < this.playerCount) && (node.getPlayer().getId().compareTo(id) < 0))
+        {
             node = node.getNext();
             nodeIndex++;
         }
         // Check if we found the node.
-        if( ( node != null ) && ( node.getPlayer().getId().equals(id) ) ) {
+        if ((node != null) && (node.getPlayer().getId().equals(id)))
+        {
             idFound = true;
         }
 
-        if(idFound)
+        if (idFound)
         {
             return node.getMatches();
-        }
-        else
+        } else
         {
-            throw new TennisDatabaseRuntimeException ("Player could not be found.");
+            throw new TennisDatabaseRuntimeException("Player could not be found.");
         }
     }
+
     @Override
     public void insertPlayer(TennisPlayer p) throws TennisDatabaseException
     {
-        if(!dupePlayerCheck(p))
+        if (!dupePlayerCheck(p))
         {
             // Special case: list empty, no need to consider sorting, insert at front.
             if (this.playerCount == 0)
@@ -105,8 +108,7 @@ public class TennisPlayerContainer implements TennisPlayerContainerInterface
             }
             System.out.println("PLAYER LOADED");
             System.out.println("Player Added Successfully");
-        }
-        else
+        } else
         {
             System.out.println("Duplicate Player Detected. Insertion Failed");
         }
@@ -122,35 +124,40 @@ public class TennisPlayerContainer implements TennisPlayerContainerInterface
         TennisPlayerContainerNode nodeP1 = this.head;
         boolean p1Found = false;
         int nodeP1Index = 0;
-        while( ( nodeP1Index < this.playerCount ) && ( nodeP1.getPlayer().getId().compareTo(idPlayer1) < 0 ) ) {
+        while ((nodeP1Index < this.playerCount) && (nodeP1.getPlayer().getId().compareTo(idPlayer1) < 0))
+        {
             nodeP1 = nodeP1.getNext();
             nodeP1Index++;
         }
         // Check if we found the node of player1.
-        if( ( nodeP1 != null ) && ( nodeP1.getPlayer().getId().equals(idPlayer1) ) ) {
+        if ((nodeP1 != null) && (nodeP1.getPlayer().getId().equals(idPlayer1)))
+        {
             p1Found = true;
         }
         // Search the node associated with player2, by id.
         TennisPlayerContainerNode nodeP2 = this.head;
         boolean p2Found = false;
         int nodeP2Index = 0;
-        while( ( nodeP2Index < this.playerCount ) && ( nodeP2.getPlayer().getId().compareTo(idPlayer2) < 0 ) ) {
+        while ((nodeP2Index < this.playerCount) && (nodeP2.getPlayer().getId().compareTo(idPlayer2) < 0))
+        {
             nodeP2 = nodeP2.getNext();
             nodeP2Index++;
         }
         // Check if we found the node of player2.
-        if( ( nodeP2 != null ) && ( nodeP2.getPlayer().getId().equals(idPlayer2) ) ) {
+        if ((nodeP2 != null) && (nodeP2.getPlayer().getId().equals(idPlayer2)))
+        {
             p2Found = true;
         }
         // ...
-        if( p1Found && p2Found ) {
+        if (p1Found && p2Found)
+        {
             // Insert match "m" into the node of player1.
             nodeP1.insertMatch(m);
             // Insert match "m" into the node of player2.
             nodeP2.insertMatch(m);
-        }
-        else {
-            throw new TennisDatabaseException( "" );
+        } else
+        {
+            throw new TennisDatabaseException("");
         }
     }
 
@@ -160,10 +167,10 @@ public class TennisPlayerContainer implements TennisPlayerContainerInterface
         TennisPlayer[] output = new TennisPlayer[playerCount];
         TennisPlayerContainerNode node = head;
 
-        output[0]= head.getPlayer();
+        output[0] = head.getPlayer();
         node = node.getNext();
 
-        for(int i = 1; i < playerCount; i++)
+        for (int i = 1; i < playerCount; i++)
         {
             output[i] = node.getPlayer();
             node = node.getNext();
@@ -171,17 +178,37 @@ public class TennisPlayerContainer implements TennisPlayerContainerInterface
 
         return output;// getAllPlayersRec(node.getNext(), output);
     }
-    /*
-    public TennisPlayer[] getAllPlayersRec(TennisPlayerContainerNode node, TennisPlayer[] arrayIn)
+
+    @Override
+    public TennisMatch[] getMatchesOfPlayer(String playerId) throws TennisDatabaseException, TennisDatabaseRuntimeException
     {
-        arrayIn[node.]
+        TennisPlayerContainerNode node = this.head;
+        boolean idFound = false;
+        int nodeIndex = 0;
+        while ((nodeIndex < this.playerCount) && (node.getPlayer().getId().compareTo(playerId) < 0))
+        {
+            node = node.getNext();
+            nodeIndex++;
+        }
+        // Check if we found the node.
+        if ((node != null) && (node.getPlayer().getId().equals(playerId)))
+        {
+            idFound = true;
+        }
+
+        if (idFound)
+        {
+            return node.getMatches();
+        } else
+        {
+            throw new TennisDatabaseRuntimeException("Player could not be found.");
+        }
     }
 
-     */
     public boolean dupePlayerCheck(TennisPlayer inPlayer)
     {
         TennisPlayerContainerNode node = this.head;
-        for(int i = 0; i < playerCount; i++)
+        for (int i = 0; i < playerCount; i++)
         {
             if (node.getPlayer().getId().equals(inPlayer.getId()))
             {
@@ -190,6 +217,7 @@ public class TennisPlayerContainer implements TennisPlayerContainerInterface
         }
         return false;
     }
+
     public int getPlayerCount()
     {
         return playerCount;

@@ -14,13 +14,14 @@ public class TennisMatchContainer implements TennisMatchContainerInterface
         this.matchArray = new TennisMatch[2];
         this.matchCount = 0;
     }
+
     @Override
     public void insertMatch(TennisMatch m) throws TennisDatabaseException
     {
-        if(this.matchCount == maxMatches)
+        if (this.matchCount == maxMatches)
         {
             TennisMatch[] newArray = new TennisMatch[this.matchArray.length * 2];
-            for(int i =0; i < this.matchCount; i++)
+            for (int i = 0; i < this.matchCount; i++)
             {
                 newArray[i] = this.matchArray[i];
             }
@@ -29,15 +30,15 @@ public class TennisMatchContainer implements TennisMatchContainerInterface
         }
 
         int point = 0;
-        while((point < this.matchCount)&&(this.matchArray[point].compareTo(m)>0))
+        while ((point < this.matchCount) && (this.matchArray[point].compareTo(m) > 0))
         {
             point++;
         }
-        if(point < this.matchCount)
+        if (point < this.matchCount)
         {
-            for(int i = this.matchCount - 1; i >= point; i--)
+            for (int i = this.matchCount - 1; i >= point; i--)
             {
-                this.matchArray[i+1] = this.matchArray[i];
+                this.matchArray[i + 1] = this.matchArray[i];
             }
         }
         this.matchArray[point] = m;
@@ -54,8 +55,23 @@ public class TennisMatchContainer implements TennisMatchContainerInterface
     @Override
     public TennisMatch[] getMatchesOfPlayer(String playerId) throws TennisDatabaseException
     {
-        return new TennisMatch[0];
+        /*
+        int matches = 0;
+        TennisMatch[] output = new TennisMatch[matches];
+        for (int i = 0; i< this.matchCount; i++)
+        {
+            if (this.matchArray[i].getIdPlayer1().equals(playerId) || this.matchArray[i].getIdPlayer1().equals(playerId))
+            {
+                matches++;
+                output[matches] = matchArray[i];
+            }
+        }
+        for (int i )
+        */
+
+        return null;
     }
+
     public int getMatchCount()
     {
         return matchCount;

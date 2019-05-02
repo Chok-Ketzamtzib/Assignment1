@@ -66,7 +66,13 @@ class TennisPlayerContainerNode implements TennisPlayerContainerNodeInterface
     @Override
     public TennisMatch[] getMatches() throws TennisDatabaseRuntimeException
     {
-        TennisMatch[] a = list.getAll();
+        TennisMatch[] a = new TennisMatch[list.size()];//list.get()
+        for(int i = 0; i < list.size();i++)
+        {
+            a[i] = list.get(i);
+        }
+
+
         TennisMatch[] b = new TennisMatch[a.length];
 
         for (int i = 0; i < a.length; i++)

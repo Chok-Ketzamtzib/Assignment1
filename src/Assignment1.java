@@ -3,6 +3,7 @@
 //Assignment 1
 
 //TODO: Fix Heading Comments
+
 import TennisDatabase.TennisDatabase;
 import TennisDatabase.TennisDatabaseException;
 import TennisDatabase.TennisDatabaseRuntimeException;
@@ -24,8 +25,7 @@ public class Assignment1
         try
         {
             String fileName = args[0];
-        }
-        catch (ArrayIndexOutOfBoundsException e)
+        } catch (ArrayIndexOutOfBoundsException e)
         {
             System.out.println("ERROR: Please specify an input file in the command line");
         }
@@ -34,12 +34,10 @@ public class Assignment1
         try
         {
             database.loadFromFile(args[0]);
-        }
-        catch (TennisDatabaseRuntimeException e)
+        } catch (TennisDatabaseRuntimeException e)
         {
             System.out.println("LOAD ERROR RUNTIME");
-        }
-        catch (TennisDatabaseException e)
+        } catch (TennisDatabaseException e)
         {
             System.out.println("LOAD ERROR");
         }
@@ -70,10 +68,9 @@ public class Assignment1
                     try
                     {
                         database.printMatchesOfPlayer(idInput);
-                    }
-                    catch (TennisDatabaseRuntimeException e)
+                    } catch (TennisDatabaseRuntimeException e)
                     {
-                        System.out.println("Could not print matches for id: " + idInput);
+                        System.out.println("Could not printMatch matches for id: " + idInput);
                     }
                     break;
                 case 3:
@@ -82,19 +79,17 @@ public class Assignment1
                     TennisMatch[] matchArray = database.getAllMatches();
                     try
                     {
-                        if(database.getMatchCount() == 0)
+                        if (database.getMatchCount() == 0)
                         {
                             System.out.println("No Matches in System");
-                        }
-                        else
+                        } else
                         {
                             for (int i = 0; i < matchArray.length; i++)
                             {
-                                matchArray[i].print();
+                                matchArray[i].printMatch();
                             }
                         }
-                    }
-                    catch (NullPointerException e) //do nothing with empty array spaces
+                    } catch (NullPointerException e) //do nothing with empty array spaces
                     {
 
                     }
@@ -143,8 +138,7 @@ public class Assignment1
                     System.out.println("Invalid input detected. Please enter a valid selection");
             }
         }
-        while(actionInput != 9);
-
+        while (actionInput != 9);
 
 
     }

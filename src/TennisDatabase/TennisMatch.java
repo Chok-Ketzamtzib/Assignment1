@@ -15,7 +15,7 @@ public class TennisMatch implements TennisMatchInterface
 
     private int winner; //{1,2}: 1 mean player1 won, 2 means player2 won
 
-    public TennisMatch (String idPlayer1, String idPlayer2, int year, int month, int day, String tournament, String score)
+    public TennisMatch(String idPlayer1, String idPlayer2, int year, int month, int day, String tournament, String score)
     {
         this.idPlayer1 = idPlayer1;
         this.idPlayer2 = idPlayer2;
@@ -28,8 +28,7 @@ public class TennisMatch implements TennisMatchInterface
         {
             this.winner = TennisMatchInterface.processMatchScore(this.score);
 
-        }
-        catch (TennisDatabaseRuntimeException e)
+        } catch (TennisDatabaseRuntimeException e)
         {
             throw new TennisDatabaseRuntimeException("Match creation failed: score invalid");
         }
@@ -96,35 +95,31 @@ public class TennisMatch implements TennisMatchInterface
         return winner;
     }
 
-    public void print()
+    public void printMatch()
     {
 
-        System.out.println(String.format("%02d", year) + "/" + String.format("%02d", month) +"/" + String.format("%02d", day) + "," + " "
-            + idPlayer1 + "-" + idPlayer2 + "," + " " + tournament+ "," + " " + score);
+        System.out.println(String.format("%02d", year) + "/" + String.format("%02d", month) + "/" + String.format("%02d", day) + "," + " "
+                + idPlayer1 + "-" + idPlayer2 + "," + " " + tournament + "," + " " + score);
     }
 
     @Override
     public int compareTo(TennisMatch inMatch) throws NullPointerException
     {
-        if(this.year > inMatch.year)
+        if (this.year > inMatch.year)
         {
             return 1;
-        }
-        else if(this.year < inMatch.year)
+        } else if (this.year < inMatch.year)
         {
             return -1;
-        }
-        else
+        } else
         {
             if (this.month > inMatch.month)
             {
                 return 1;
-            }
-            else if (this.month < inMatch.month)
+            } else if (this.month < inMatch.month)
             {
                 return -1;
-            }
-            else
+            } else
             {
                 if (this.day > inMatch.day)
                 {
@@ -132,9 +127,8 @@ public class TennisMatch implements TennisMatchInterface
                 }
                 if (this.day < inMatch.day)
                 {
-                   return -1;
-                }
-                else
+                    return -1;
+                } else
                 {
                     return 1;
                 }
@@ -144,11 +138,11 @@ public class TennisMatch implements TennisMatchInterface
 
     public boolean dupeCheckMatch(TennisMatch inMatch)
     {
-        if(this.idPlayer1.equals(inMatch.idPlayer1) && this.idPlayer2.equals(inMatch.idPlayer2) &&
-            this.year == inMatch.year && this.month == inMatch.month && this.day == inMatch.day &&
-            this.tournament.equals(inMatch.tournament) && this.score.equals(inMatch.score))
+        if (this.idPlayer1.equals(inMatch.idPlayer1) && this.idPlayer2.equals(inMatch.idPlayer2) &&
+                this.year == inMatch.year && this.month == inMatch.month && this.day == inMatch.day &&
+                this.tournament.equals(inMatch.tournament) && this.score.equals(inMatch.score))
         {
-          return true;
+            return true;
         }
         return false;
     }
