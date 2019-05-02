@@ -43,7 +43,6 @@ public class TennisMatchContainer implements TennisMatchContainerInterface
         }
         this.matchArray[point] = m;
         this.matchCount++;
-        System.out.println("MATCH LOADED");
     }
 
     @Override

@@ -95,10 +95,10 @@ public class TennisMatch implements TennisMatchInterface
         return winner;
     }
 
-    public void printMatch()
+    public String getMatchString()
     {
 
-        System.out.println(String.format("%02d", year) + "/" + String.format("%02d", month) + "/" + String.format("%02d", day) + "," + " "
+        return (String.format("%02d", year) + "/" + String.format("%02d", month) + "/" + String.format("%02d", day) + "," + " "
                 + idPlayer1 + "-" + idPlayer2 + "," + " " + tournament + "," + " " + score);
     }
 

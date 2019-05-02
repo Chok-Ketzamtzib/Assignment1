@@ -4,7 +4,7 @@
 
 package TennisDatabase;
 
-public class TennisPlayerContainer implements TennisPlayerContainerInterface
+class TennisPlayerContainer implements TennisPlayerContainerInterface
 {
     private TennisPlayerContainerNode head;
     private int playerCount = 0;
@@ -106,11 +106,9 @@ public class TennisPlayerContainer implements TennisPlayerContainerInterface
                     this.head = newNode;
                 }
             }
-            System.out.println("PLAYER LOADED");
-            System.out.println("Player Added Successfully");
         } else
         {
-            System.out.println("Duplicate Player Detected. Insertion Failed");
+            throw new TennisDatabaseException("Duplicate Player Detected. Insertion Failed");
         }
     }
 
