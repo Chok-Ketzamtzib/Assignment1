@@ -59,6 +59,7 @@ public class TennisDatabase implements TennisDatabaseInterface
                 insertMatch(playerId1, playerId2, date[0], date[1], date[2], location, score);
 
             }
+            //Ignore lines without PLAYER or MATCH
         }
 
     }
@@ -137,25 +138,29 @@ public class TennisDatabase implements TennisDatabaseInterface
     }
 
     //Prints matches with a specific player id
-    public void printMatchesOfPlayer(String idInput)
+    public String[] getMatchesOfPlayerString(String idInput)
     {
         TennisMatch[] matchArray = playerContainer.getPlayerMatches(idInput);
         if(matchArray.length==0) //if player has no matches
         {
-            System.out.println("This player does not have any matches.");
+            String[] outputArray = new String[1];
+            outputArray[0]=("This player does not have any matches.");
+            return outputArray;
         }
         else
         {
+            String[] outputArray = new String[matchArray.length];
             for (int i = 0; i < matchArray.length; i++)
             {
-                System.out.println(String.format("%02d", matchArray[i].getDateYear()) + "/" + String.format("%02d",
+                outputArray[i] = (String.format("%02d", matchArray[i].getDateYear()) + "/" + String.format("%02d",
                         matchArray[i].getDateMonth()) + "/" + String.format("%02d", matchArray[i].getDateMonth()) + "," + " "
                         + playerContainer.getPlayer(matchArray[i].getIdPlayer1()).getFirstName() + " "
                         + playerContainer.getPlayer(matchArray[i].getIdPlayer1()).getLastName()
-                        + "-" + playerContainer.getPlayer(matchArray[i].getIdPlayer2()).getFirstName() + " "
+                        + " - " + playerContainer.getPlayer(matchArray[i].getIdPlayer2()).getFirstName() + " "
                         + playerContainer.getPlayer(matchArray[i].getIdPlayer2()).getLastName()
                         + "," + " " + matchArray[i].getTournament() + "," + " " + matchArray[i].getMatchScore());
             }
+            return outputArray;
         }
     }
 
@@ -200,6 +205,7 @@ public class TennisDatabase implements TennisDatabaseInterface
         }
     }
 
+    //gets number of matches in matchContainer
     public int getMatchCount()
     {
         return matchContainer.getMatchCount();

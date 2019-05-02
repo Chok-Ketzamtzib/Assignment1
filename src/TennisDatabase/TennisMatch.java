@@ -135,15 +135,4 @@ public class TennisMatch implements TennisMatchInterface
             }
         }
     }
-
-    public boolean dupeCheckMatch(TennisMatch inMatch)
-    {
-        if (this.idPlayer1.equals(inMatch.idPlayer1) && this.idPlayer2.equals(inMatch.idPlayer2) &&
-                this.year == inMatch.year && this.month == inMatch.month && this.day == inMatch.day &&
-                this.tournament.equals(inMatch.tournament) && this.score.equals(inMatch.score))
-        {
-            return true;
-        }
-        return false;
-    }
 }

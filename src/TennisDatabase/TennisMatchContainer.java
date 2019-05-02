@@ -15,6 +15,7 @@ public class TennisMatchContainer implements TennisMatchContainerInterface
         this.matchCount = 0;
     }
 
+    //Adds inputted match into the container
     @Override
     public void insertMatch(TennisMatch m) throws TennisDatabaseException
     {
@@ -51,24 +52,32 @@ public class TennisMatchContainer implements TennisMatchContainerInterface
         return matchArray;
     }
 
+    //Unused method. Returns array of matches with playerId
     @Override
     public TennisMatch[] getMatchesOfPlayer(String playerId) throws TennisDatabaseException
     {
-        /*
+
         int matches = 0;
-        TennisMatch[] output = new TennisMatch[matches];
         for (int i = 0; i< this.matchCount; i++)
         {
-            if (this.matchArray[i].getIdPlayer1().equals(playerId) || this.matchArray[i].getIdPlayer1().equals(playerId))
+            if (this.matchArray[i].getIdPlayer1().equals(playerId) || this.matchArray[i].getIdPlayer2().equals(playerId))
             {
                 matches++;
-                output[matches] = matchArray[i];
             }
         }
-        for (int i )
-        */
+        TennisMatch[] output = new TennisMatch[matches];
+        int outputIndex = 0;
+        for (int i =0; i < matchArray.length; i++)
+        {
+            if (this.matchArray[i].getIdPlayer1().equals(playerId) || this.matchArray[i].getIdPlayer2().equals(playerId))
+            {
+                output[outputIndex] = matchArray[i];
+                outputIndex++;
+            }
+        }
 
-        return null;
+
+        return output;
     }
 
     public int getMatchCount()

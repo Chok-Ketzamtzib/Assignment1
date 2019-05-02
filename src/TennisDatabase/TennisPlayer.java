@@ -64,12 +64,12 @@ public class TennisPlayer implements TennisPlayerInterface
     public void addWin()
     {
         wins += 1;
-    }
+    } //increments wins by 1
 
     public void addLoss()
     {
         losses += 1;
-    }
+    } //increments losses by 1
 
     public int getWins()
     {

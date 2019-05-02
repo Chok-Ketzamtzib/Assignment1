@@ -31,10 +31,12 @@ public class Assignment1
             System.out.println("ERROR: Please specify an input file in the command line");
         }
 
+        //checks for exceptions during initial load
 
         try
         {
             database.loadFromFile(args[0]);
+
         } catch (TennisDatabaseRuntimeException e)
         {
             System.out.println("LOAD ERROR RUNTIME");
@@ -61,8 +63,8 @@ public class Assignment1
                 {
                     case 1:
                         System.out.println("You selected \"Print all tennis players.\"");
-                        String[] playerOutputArray = database.getPlayerStringArray();
-                        for(int i = 0; i < playerOutputArray.length; i++)
+                        String[] playerOutputArray = database.getPlayerStringArray(); //array of tennis play strings
+                        for (int i = 0; i < playerOutputArray.length; i++)
                         {
                             System.out.println(playerOutputArray[i]);
                         }
@@ -74,16 +76,22 @@ public class Assignment1
                         String idInput = consoleIn.next();
                         try
                         {
-                            database.printMatchesOfPlayer(idInput);
+                            String[] playerMatchStringArray = database.getMatchesOfPlayerString(idInput); //array of match strings
+
+                            for (int i = 0; i < playerMatchStringArray.length; i++)
+                            {
+                                System.out.println(playerMatchStringArray[i]);
+                            }
+
                         } catch (TennisDatabaseRuntimeException e)
                         {
-                            System.out.println("Could not getMatchString matches for id: " + idInput);
+                            System.out.println("Could not print matches for id: " + idInput);
                         }
                         break;
                     case 3:
                         System.out.println("You selected \"Print all tennis matches.\"");
 
-                        TennisMatch[] matchArray = database.getAllMatches();
+                        TennisMatch[] matchArray = database.getAllMatches(); //array of match strings
                         try
                         {
                             if (database.getMatchCount() == 0)
@@ -146,8 +154,7 @@ public class Assignment1
                 }
             }
             while (actionInput != 9);
-        }
-        catch (InputMismatchException e)
+        } catch (InputMismatchException e)
         {
             System.out.println("Invalid input detected. Exiting...");
         }

@@ -14,7 +14,7 @@ class TennisPlayerContainer implements TennisPlayerContainerInterface
         this.head = null;
     }
 
-
+    //Searches through nodes to find player. Throws exception if id does not exist
     public TennisPlayer getPlayer(String id) throws TennisDatabaseRuntimeException
     {
         TennisPlayerContainerNode node = this.head;
@@ -40,6 +40,7 @@ class TennisPlayerContainer implements TennisPlayerContainerInterface
         }
     }
 
+    //Searches for player with inputted id and creates an array of their matches
     public TennisMatch[] getPlayerMatches(String id) throws TennisDatabaseRuntimeException
     {
         TennisPlayerContainerNode node = this.head;
@@ -65,6 +66,7 @@ class TennisPlayerContainer implements TennisPlayerContainerInterface
         }
     }
 
+    //adds new player and player container node
     @Override
     public void insertPlayer(TennisPlayer p) throws TennisDatabaseException
     {
@@ -174,7 +176,7 @@ class TennisPlayerContainer implements TennisPlayerContainerInterface
             node = node.getNext();
         }
 
-        return output;// getAllPlayersRec(node.getNext(), output);
+        return output;
     }
 
     @Override
@@ -203,6 +205,7 @@ class TennisPlayerContainer implements TennisPlayerContainerInterface
         }
     }
 
+    //checks if inputted player already exists
     public boolean dupePlayerCheck(TennisPlayer inPlayer)
     {
         TennisPlayerContainerNode node = this.head;
