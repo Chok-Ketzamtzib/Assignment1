@@ -2,7 +2,9 @@ Assignment 1
 	by Steven Causley
 
 Instructions:
-	1. Create an input file with the following parameters. One entry per line. Capital letters only.
+	1. Create an input file with the following parameters. One entry per line, all players first, then all matches.
+	    Note: The code automatically turns lowercase letters into capital letters.
+
 		Player entry: 
 			PLAYER/<PLAYERID>/<FIRST NAME>/<LAST NAME>/<birthyear yyyy>/<COUNTRY>
 		Match entry:

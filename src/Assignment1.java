@@ -12,7 +12,7 @@ import TennisDatabase.TennisMatch;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-
+//main class
 public class Assignment1
 {
     public static void main(String[] args) throws TennisDatabaseException
@@ -39,13 +39,13 @@ public class Assignment1
 
         } catch (TennisDatabaseRuntimeException e)
         {
-            System.out.println("LOAD ERROR RUNTIME");
+            System.out.println("RUNTIME ERROR LOADING FROM FILE");
         } catch (TennisDatabaseException e)
         {
-            System.out.println("LOAD ERROR");
+            System.out.println("ERROR: Invalid Input File. Exit, fix file, and restart for proper usage.");
         }
 
-
+        //User Interface. Exits upon invalid input
         try
         {
             do
@@ -74,6 +74,7 @@ public class Assignment1
                         System.out.println("You selected \"Print all tennis matches of a player.\"");
                         System.out.println("Enter player id:");
                         String idInput = consoleIn.next();
+                        idInput = idInput.toUpperCase();
                         try
                         {
                             String[] playerMatchStringArray = database.getMatchesOfPlayerString(idInput); //array of match strings
@@ -91,7 +92,7 @@ public class Assignment1
                     case 3:
                         System.out.println("You selected \"Print all tennis matches.\"");
 
-                        TennisMatch[] matchArray = database.getAllMatches(); //array of match strings
+                        String[] matchArray = database.getAllMatchesString(); //array of match strings
                         try
                         {
                             if (database.getMatchCount() == 0)
@@ -101,7 +102,7 @@ public class Assignment1
                             {
                                 for (int i = 0; i < matchArray.length; i++)
                                 {
-                                    System.out.println(matchArray[i].getMatchString());
+                                    System.out.println(matchArray[i]);
                                 }
                             }
                         } catch (NullPointerException e) //do nothing with empty array spaces
@@ -129,8 +130,10 @@ public class Assignment1
                         System.out.println("You selected \"Insert a tennis match.\"");
                         System.out.println("Input player 1 id:");
                         String newId1 = consoleIn.next();
+                        newId1 = newId1.toUpperCase();
                         System.out.println("Input player 2 id:");
                         String newId2 = consoleIn.next();
+                        newId2 = newId2.toUpperCase();
                         System.out.println("Input year of match");
                         int newYear = consoleIn.nextInt();
                         System.out.println("Input month of match");
@@ -140,6 +143,7 @@ public class Assignment1
                         System.out.println("Input tournament name:");
                         consoleIn.nextLine();
                         String newName = consoleIn.nextLine();
+                        newName = newName.toUpperCase();
                         System.out.println("Input scores, separated by commas:");
                         String newScore = consoleIn.next();
                         System.out.println("Adding match...");

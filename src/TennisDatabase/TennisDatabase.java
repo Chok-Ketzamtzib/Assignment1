@@ -94,7 +94,7 @@ public class TennisDatabase implements TennisDatabaseInterface
     {
         try
         {
-            TennisPlayer newPlayer = new TennisPlayer(id, firstName, lastName, year, country);
+            TennisPlayer newPlayer = new TennisPlayer(id.toUpperCase(), firstName.toUpperCase(), lastName.toUpperCase(), year, country.toUpperCase());
             playerContainer.insertPlayer(newPlayer);
         } catch (TennisDatabaseException e)
         {
@@ -141,13 +141,12 @@ public class TennisDatabase implements TennisDatabaseInterface
     public String[] getMatchesOfPlayerString(String idInput)
     {
         TennisMatch[] matchArray = playerContainer.getPlayerMatches(idInput);
-        if(matchArray.length==0) //if player has no matches
+        if (matchArray.length == 0) //if player has no matches
         {
             String[] outputArray = new String[1];
-            outputArray[0]=("This player does not have any matches.");
+            outputArray[0] = ("This player does not have any matches.");
             return outputArray;
-        }
-        else
+        } else
         {
             String[] outputArray = new String[matchArray.length];
             for (int i = 0; i < matchArray.length; i++)
@@ -165,13 +164,13 @@ public class TennisDatabase implements TennisDatabaseInterface
     }
 
     //Converts all players in playerContainer into String array
-    public String [] getPlayerStringArray()
+    public String[] getPlayerStringArray()
     {
 
         if (playerContainer.getPlayerCount() == 0)
         {
             String[] outputArray = new String[1];
-            outputArray[0]="No Players in System";
+            outputArray[0] = "No Players in System";
             return outputArray;
         } else
         {
@@ -180,7 +179,7 @@ public class TennisDatabase implements TennisDatabaseInterface
             calcWinLoss();
             for (int i = 0; i < playerArray.length; i++)
             {
-                outputArray[i]=(playerArray[i].getId() + ": " + playerArray[i].getFirstName() + " " +
+                outputArray[i] = (playerArray[i].getId() + ": " + playerArray[i].getFirstName() + " " +
                         playerArray[i].getLastName() + ", " + playerArray[i].getBirthYear() + ", " + playerArray[i].getWins() + "/" + playerArray[i].getLosses() + " " + "(WIN/LOSS)");
             }
             return outputArray;
@@ -209,6 +208,29 @@ public class TennisDatabase implements TennisDatabaseInterface
     public int getMatchCount()
     {
         return matchContainer.getMatchCount();
+    }
+
+    //returns array of strings for all matches
+    public String[] getAllMatchesString()
+    {
+        TennisMatch[] array = getAllMatches();
+        int arrayLength = 0;
+
+        //find length of array without null values
+        for (int i = 0; i < array.length; i++)
+        {
+            if (array[i] != null)
+            {
+                arrayLength++;
+            }
+        }
+        String[] output = new String[arrayLength];
+        for (int i = 0; i < arrayLength; i++)
+        {
+            output[i] = (String.format("%02d", array[i].getDateYear()) + "/" + String.format("%02d", array[i].getDateMonth()) + "/" + String.format("%02d", array[i].getDateDay()) + "," + " "
+                    + getPlayer(array[i].getIdPlayer1()).getFirstName() + " " + getPlayer(array[i].getIdPlayer1()).getLastName() + " - " + getPlayer(array[i].getIdPlayer2()).getFirstName() + " " + getPlayer(array[i].getIdPlayer2()).getLastName() + "," + " " + array[i].getTournament() + "," + " " + array[i].getMatchScore());
+        }
+        return output;
     }
 
 }

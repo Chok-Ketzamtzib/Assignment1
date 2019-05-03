@@ -95,13 +95,6 @@ public class TennisMatch implements TennisMatchInterface
         return winner;
     }
 
-    public String getMatchString()
-    {
-
-        return (String.format("%02d", year) + "/" + String.format("%02d", month) + "/" + String.format("%02d", day) + "," + " "
-                + idPlayer1 + "-" + idPlayer2 + "," + " " + tournament + "," + " " + score);
-    }
-
     @Override
     public int compareTo(TennisMatch inMatch) throws NullPointerException
     {
