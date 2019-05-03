@@ -7,7 +7,6 @@
 import TennisDatabase.TennisDatabase;
 import TennisDatabase.TennisDatabaseException;
 import TennisDatabase.TennisDatabaseRuntimeException;
-import TennisDatabase.TennisMatch;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
