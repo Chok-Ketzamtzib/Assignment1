@@ -20,7 +20,4 @@ interface TennisPlayerInterface extends Comparable<TennisPlayer> {
 
 	public String getCountry();
 
-	// Desc.: Prints this player on the console.
-	public void print();
-
 }

@@ -1,7 +1,4 @@
-
-
-
-// Giuseppe Turini
+// @author Giuseppe Turini
 // CS-102, Spring 2019
 // Assignment 1
 
@@ -13,7 +10,7 @@ import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 
 // Interface (package-private) providing the specifications for the TennisMatch class.
-public interface TennisMatchInterface extends Comparable<TennisMatch> {      
+interface TennisMatchInterface extends Comparable<TennisMatch> {      
    // Accessors (getters).
    public String getIdPlayer1();
    public String getIdPlayer2();
@@ -41,7 +38,7 @@ public interface TennisMatchInterface extends Comparable<TennisMatch> {
    // Desc.: Static internal method to process a tennis match score (as a string), recursively.
    // Output: An array of 2 integers storing the sets won by each player.
    //         Throws an unchecked (non-critical) exception if the score is invalid (no winner).
-   private static int[] processMatchScoreRec( String matchScore ) throws TennisDatabaseRuntimeException {
+   public static int[] processMatchScoreRec( String matchScore ) throws TennisDatabaseRuntimeException {
       // Init output variable.
       int[] setScore = new int[] { 0, 0 };
       // Error: input score is empty (recursion should NEVER reach this point).

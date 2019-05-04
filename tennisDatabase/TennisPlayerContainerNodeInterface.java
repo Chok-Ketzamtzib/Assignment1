@@ -5,7 +5,7 @@
 // CS-102, Spring 2019
 // Assignment 1
 
-package TennisDatabase;
+package tennisDatabase;
 
 // Interface (package-private) providing the specifications for the TennisPlayerNode class.
 interface TennisPlayerContainerNodeInterface {

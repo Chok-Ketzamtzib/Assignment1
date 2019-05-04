@@ -1,27 +1,24 @@
 package tennisDatabase;
 
-public class TennisMatchContainer implements TennisMatchContainerInterface {
+class TennisMatchContainer implements TennisMatchContainerInterface {
 
 	private TennisMatch[] matchArray;
 	private int matchCount; // # matches
 	private int maxMatches = 2; // max # matches
 
-	// constructor
-	public TennisMatchContainer() {
+	
+	public TennisMatchContainer() {// constructor
 
 		this.matchArray = new TennisMatch[2];
 		this.matchCount = 0;
 	}
 
 	@Override
-	// TODO: Get Match container integrated with TennisMatch
 	public void insertMatch(TennisMatch m) throws TennisDatabaseException {
 
 		if (this.matchCount == maxMatches) { // array full
-
-			// throw new TennisDatabaseException("ERROR: Container full, cannot insert
-			// match.");
-			TennisMatch[] newArray = new TennisMatch[this.matchArray.length * 2]; // doubles size of original
+			
+			TennisMatch[] newArray = new TennisMatch[this.matchArray.length + 100]; // doubles size of original
 																					// TennisMatch array object
 
 			for (int i = 0; i < this.matchCount; i++) {
@@ -37,24 +34,51 @@ public class TennisMatchContainer implements TennisMatchContainerInterface {
 		}
 
 		else { // if array is not full
-
-			this.matchArray[this.matchCount] = m;
-			this.matchCount++;
-			System.out.println("MATCH LOADED");
-
+			int point = 0;
+	        while ((point < this.matchCount) && (this.matchArray[point].compareTo(m) > 0)) {
+	            point++;
+	        }
+	        if (point < this.matchCount) {
+	            for (int i = this.matchCount - 1; i >= point; i--) {
+	                this.matchArray[i + 1] = this.matchArray[i];
+	            }
+	        }
+	        this.matchArray[point] = m;
+	        this.matchCount++;
 		}
 	}
 
 	@Override
 	public TennisMatch[] getAllMatches() throws TennisDatabaseRuntimeException {
-		// TODO Auto-generated method stub
 		return matchArray;
 	}
 
 	@Override
 	public TennisMatch[] getMatchesOfPlayer(String playerId) throws TennisDatabaseException {
-		// TODO Auto-generated method stub
-		return new TennisMatch[0]; // new object of TennisMatch Array
-	}
+		 int matches = 0;
+	        for (int i = 0; i< this.matchCount; i++) {
+	        	TennisMatch array = matchArray[i]; //goes directly to reference in virtual machine rather than actual machine i.e. does not search through array but the reference
+	            if (array.getIdPlayer1().equals(playerId) || array.getIdPlayer2().equals(playerId)) {
+	                matches++;
+	            }
+	        }
+	        
+	        TennisMatch[] output = new TennisMatch[matches];
+	        int outputIndex = 0;
+	        for (int i =0; i < matchArray.length; i++) {
+	        	TennisMatch array = matchArray[i]; 
+	            if (array.getIdPlayer1().equals(playerId) || array.getIdPlayer2().equals(playerId)) {
+	                output[outputIndex] = matchArray[i];
+	                outputIndex++;
+	            }
+	        }
 
+	        return output;
+	}
+	
+	public int getMatchCount() {
+		
+		return matchCount;
+	
+	}
 }

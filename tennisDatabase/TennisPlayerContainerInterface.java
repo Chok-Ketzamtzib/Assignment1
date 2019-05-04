@@ -29,6 +29,12 @@ interface TennisPlayerContainerInterface {
    // Output: Throws an unchecked (non-critical) exception if there are no players in this container.
    public TennisPlayer[] getAllPlayers() throws TennisDatabaseRuntimeException;
    
+   // Desc.: Returns copies (deep copies) of all matches of input player (id) arranged in the output array (sorted by date, most recent first).
+   // Input: The id of a player.
+   // Output: Throws a checked (critical) exception if the player (id) does not exists.
+   //         Throws an unchecked (non-critical) exception if there are no matches (but the player id exists).
+   public TennisMatch[] getMatchesOfPlayer( String playerId  ) throws TennisDatabaseException, TennisDatabaseRuntimeException;
+   
 }
 
 

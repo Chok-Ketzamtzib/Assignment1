@@ -1,19 +1,67 @@
 package tennisDatabase;
 
-public class TennisPlayerContainerNode {
+ class TennisPlayerContainerNode {
 
-	// TODO: vvv make the following private vvv
-	TennisPlayerContainerNode next;
-	TennisPlayerContainerNode prev;
+	private TennisPlayerContainerNode next;
+	private TennisPlayerContainerNode prev;
 
-	TennisPlayer player;
+	private TennisPlayer player;
+	private SortedLinkedList<TennisMatch> list; // List of matches of this player.
 
-	// TODO: List of matches for this player
 	public TennisPlayerContainerNode(TennisPlayer inputPlayer) {
 		this.next = null;
 		this.player = null;
 		this.player = inputPlayer;
-		// this.player = new TennisPlayer( inputPlayer.getFirstName(),
-		// inputPlayer.getLastName(), ...)
+		this.list = new SortedLinkedList<TennisMatch>();
 	}
+	
+    public TennisPlayer getPlayer() {
+        return this.player;
+    }
+
+    public TennisPlayerContainerNode getPrev() {
+        return this.prev;
+    }
+
+    public TennisPlayerContainerNode getNext() {
+        return this.next;
+    }
+
+    public void setPrev(TennisPlayerContainerNode p) {
+        this.prev = p;
+    }
+
+    public void setNext(TennisPlayerContainerNode n) {
+        this.next = n;
+    }
+
+    public void insertMatch(TennisMatch m) throws TennisDatabaseException {
+
+    	try {
+            list.insert(m);
+        } catch (Exception e) {
+            throw new TennisDatabaseException("insertion to doubly linked list failed");
+        }
+    	
+    }
+
+    public TennisMatch[] getMatches() throws TennisDatabaseRuntimeException { //utilizes shadow cloning method
+    	
+        TennisMatch[] a = new TennisMatch[list.size()];
+        
+        for(int i = 0; i < list.size();i++) {
+        	
+            a[i] = list.get(i);
+        }
+
+        TennisMatch[] b = new TennisMatch[a.length];
+
+        for (int i = 0; i < a.length; i++) {
+        	
+            b[i] = new TennisMatch(a[i]); //copy constructor to TennisMatch Class
+        
+        }
+        
+        return b;
+    }
 }
