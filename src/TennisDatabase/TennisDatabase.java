@@ -118,7 +118,15 @@ public class TennisDatabase implements TennisDatabaseInterface
         {
             throw new TennisDatabaseRuntimeException("Error: Invalid Match. Match not added");
         }
-
+        //Add wins and losses respectively
+        if(m.getWinner() == 1){
+            getPlayer(m.getIdPlayer1()).addWin();
+            getPlayer(m.getIdPlayer2()).addLoss();
+        }
+        else {
+            getPlayer(m.getIdPlayer1()).addLoss();
+            getPlayer(m.getIdPlayer2()).addWin();
+        }
 
     }
 
@@ -176,31 +184,13 @@ public class TennisDatabase implements TennisDatabaseInterface
         {
             String[] outputArray = new String[playerContainer.getPlayerCount()];
             TennisPlayer[] playerArray = getAllPlayers();
-            calcWinLoss();
+            //calcWinLoss();
             for (int i = 0; i < playerArray.length; i++)
             {
                 outputArray[i] = (playerArray[i].getId() + ": " + playerArray[i].getFirstName() + " " +
                         playerArray[i].getLastName() + ", " + playerArray[i].getBirthYear() + ", " + playerArray[i].getWins() + "/" + playerArray[i].getLosses() + " " + "(WIN/LOSS)");
             }
             return outputArray;
-        }
-    }
-
-    //Calculates amount of matches won/lost for all players
-    public void calcWinLoss()
-    {
-        TennisMatch[] array = getAllMatches();
-        for (int i = 0; i < getMatchCount(); i++)
-        {
-            if (array[i].getWinner() == 1)
-            {
-                getPlayer(array[i].getIdPlayer1()).addWin();
-                getPlayer(array[i].getIdPlayer2()).addLoss();
-            } else
-            {
-                getPlayer(array[i].getIdPlayer1()).addLoss();
-                getPlayer(array[i].getIdPlayer2()).addWin();
-            }
         }
     }
 
